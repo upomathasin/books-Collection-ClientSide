@@ -10,7 +10,14 @@ import Main from "./Layout/Main";
 import AuthContextProvider from "./Provider/AuthContextProvider";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AddBooks from "./Components/AddBooks/AddBooks";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+import BookDetails from "./Components/BookDetails/BookDetails";
 
+const queryClient = new QueryClient();
 function App() {
   const router = createBrowserRouter([
     {
@@ -30,6 +37,10 @@ function App() {
             </PrivateRoute>
           ),
         },
+        {
+          path: "/book/details/:id",
+          element: <BookDetails></BookDetails>,
+        },
 
         {
           path: "/register",
@@ -44,9 +55,11 @@ function App() {
   ]);
   return (
     <div>
-      <AuthContextProvider>
-        <RouterProvider router={router}></RouterProvider>
-      </AuthContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthContextProvider>
+          <RouterProvider router={router}></RouterProvider>
+        </AuthContextProvider>
+      </QueryClientProvider>
     </div>
   );
 }

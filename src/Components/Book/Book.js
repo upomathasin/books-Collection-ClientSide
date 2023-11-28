@@ -1,14 +1,42 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Book({ book }) {
-  const { title, author, genre, date } = book;
+  const navigate = useNavigate();
+  const { title, author, genre, date, details } = book;
+
+  const handleDelete = (book) => {
+    console.log("delete this book: ", book);
+  };
+  const handleUpdate = (book) => {
+    console.log("Update this book: ", book);
+  };
+
+  const handleShowDetails = (book) => {
+    navigate(`/book/details/${book._id}`, { state: book });
+  };
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <div className="card-body">
-        <h2 className="card-title">Title: {title}</h2>
-        <p>{author}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+    <div className="card w-96 bg-neutral text-neutral-content">
+      <div className="card-body items-center text-center">
+        <h2 className="card-title">Book Name: {title}</h2>
+        <p>Author:{author}</p>
+        <p>Published Date:{date}</p>
+        <div className="card-actions justify-center">
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleShowDetails(book)}
+          >
+            Details
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => handleUpdate(book)}
+          >
+            Update
+          </button>
+          <button className="btn btn-error" onClick={() => handleDelete(book)}>
+            Delete
+          </button>
         </div>
       </div>
     </div>

@@ -32,7 +32,7 @@ export default function Navbar() {
               <Link to="/register">Register</Link>
             </li>
             <li>
-              <Link to="/books">Books</Link>
+              <Link to="/books">Your Books</Link>
             </li>
 
             <li>
@@ -65,7 +65,7 @@ export default function Navbar() {
             <Link to="/register">Register</Link>
           </li>
           <li>
-            <Link to="/books">Books</Link>
+            <Link to="/books">Your Books</Link>
           </li>
         </ul>
       </div>

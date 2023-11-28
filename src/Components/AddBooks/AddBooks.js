@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Provider/AuthContextProvider";
+import Swal from "sweetalert2";
 
 export default function AddBooks() {
   const { register, handleSubmit } = useForm();
+  const { user } = useContext(AuthContext);
   const [books, setBooks] = useState([]);
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
     const { title, author, date, genre, details } = data;
     const newBook = {
+      addedBy: user.email,
       title: title,
       author: author,
       date: date,
       genre: genre,
       details: details,
     };
-    fetch("http://localhost:5000/books", {
+    await fetch(`http://localhost:5000/books/:${user.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -22,6 +27,12 @@ export default function AddBooks() {
     })
       .then((res) => res.json())
       .then((data) => {
+        Swal.fire({
+          title: "Book Added!",
+
+          icon: "success",
+        });
+
         const newBooks = [...books, data];
         setBooks(newBooks);
       });
@@ -37,7 +48,7 @@ export default function AddBooks() {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Welcome</h1>
+            <h1 className="mb-5 text-5xl font-bold">Add Your Favorite Books</h1>
             <p className="mb-5">
               Add your favorite book here.Provide title, author, genre,
               publication date of your book and add this in our collection.
@@ -105,6 +116,7 @@ export default function AddBooks() {
                   required
                 />
               </div>
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Details</span>
