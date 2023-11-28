@@ -8,7 +8,7 @@ export default function Navbar() {
     signOutUser().then(() => alert("Sign out successful !"));
   };
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-400 shadow-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,14 +27,21 @@ export default function Navbar() {
               />
             </svg>
           </div>
-          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-2xl bg-base-100 rounded-box w-52">
             <li>
               <Link to="/register">Register</Link>
             </li>
-            <li>
-              <Link to="/books">Your Books</Link>
-            </li>
+            {user && (
+              <li>
+                <Link to="/books">Your Books</Link>
+              </li>
+            )}
 
+            {user && (
+              <li>
+                <Link to="/searchBook">Search Book</Link>
+              </li>
+            )}
             <li>
               <Link to="/addBook">Add Book</Link>
             </li>
@@ -57,16 +64,26 @@ export default function Navbar() {
             <Link to="/">Home</Link>
           </li>
 
-          <li>
-            <Link to="/addBook">Add Book</Link>
-          </li>
+          {user && (
+            <li>
+              <Link to="/addBook">Add Book</Link>
+            </li>
+          )}
 
           <li>
             <Link to="/register">Register</Link>
           </li>
-          <li>
-            <Link to="/books">Your Books</Link>
-          </li>
+          {user && (
+            <li>
+              <Link to="/books">Your Books</Link>
+            </li>
+          )}
+
+          {user && (
+            <li>
+              <Link to="/searchBook">Search Book</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">

@@ -17,6 +17,7 @@ import {
 } from "@tanstack/react-query";
 import BookDetails from "./Components/BookDetails/BookDetails";
 import EditBook from "./Components/EditBook/EditBook";
+import SearchBooks from "./Components/SearchBooks/SearchBooks";
 
 const queryClient = new QueryClient();
 function App() {
@@ -43,6 +44,14 @@ function App() {
           element: (
             <PrivateRoute>
               <EditBook></EditBook>
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/searchBook",
+          element: (
+            <PrivateRoute>
+              <SearchBooks></SearchBooks>
             </PrivateRoute>
           ),
         },

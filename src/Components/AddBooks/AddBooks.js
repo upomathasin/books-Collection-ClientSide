@@ -39,26 +39,6 @@ export default function AddBooks() {
   };
   return (
     <div>
-      <div
-        className="hero min-h-screen"
-        style={{
-          backgroundImage: "url(https://i.ibb.co/MZNkrSV/Book-1.jpg)",
-        }}
-      >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Add Your Favorite Books</h1>
-            <p className="mb-5">
-              Add your favorite book here.Provide title, author, genre,
-              publication date of your book and add this in our collection.
-            </p>
-
-            <button className="btn btn-primary">Get Started</button>
-          </div>
-        </div>
-      </div>
-
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content w-full h-full flex-col justify-around  lg:flex-row">
           <div className="text-center lg:text-left">

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthContextProvider";
+import Swal from "sweetalert2";
 
 export default function Book({ book }) {
   const { title, author, genre, date, details } = book;
@@ -13,17 +14,12 @@ export default function Book({ book }) {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        Swal.fire("Book Deleted !");
+      });
   };
   const handleUpdate = async (book) => {
-    //console.log("Update this book: ", book);
-
     navigate(`/editBook/${book._id}`, { state: book });
-    // await fetch(`http://localhost:5000/books/${user.email}/${book._id}`, {
-    //   method: "PUT",
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
   };
 
   const handleShowDetails = (book) => {
