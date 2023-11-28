@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthContextProvider";
 
 export default function Book({ book }) {
   const navigate = useNavigate();
   const { title, author, genre, date, details } = book;
-
-  const handleDelete = (book) => {
+  const { user } = useContext(AuthContext);
+  const handleDelete = async (book) => {
     console.log("delete this book: ", book);
+
+    await fetch(`http://localhost:5000/books/${user.email}/${book._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   const handleUpdate = (book) => {
     console.log("Update this book: ", book);
@@ -19,7 +26,7 @@ export default function Book({ book }) {
     <div className="card w-96 bg-neutral text-neutral-content">
       <div className="card-body items-center text-center">
         <h2 className="card-title">Book Name: {title}</h2>
-        <p>Author:{author}</p>
+        <h3>Author Name:{author}</h3>
         <p>Published Date:{date}</p>
         <div className="card-actions justify-center">
           <button
