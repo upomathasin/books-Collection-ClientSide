@@ -125,7 +125,7 @@ export default function AddBooks() {
                   {...register("details")}
                   type="details"
                   placeholder="Details"
-                  className="input input-bordered"
+                  className="input input-bordered input-lg w-full "
                   required
                 />
               </div>

@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthContextProvider";
 
 export default function Book({ book }) {
-  const navigate = useNavigate();
   const { title, author, genre, date, details } = book;
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleDelete = async (book) => {
-    console.log("delete this book: ", book);
+    //console.log("delete this book: ", book);
 
     await fetch(`http://localhost:5000/books/${user.email}/${book._id}`, {
       method: "DELETE",
@@ -15,8 +15,15 @@ export default function Book({ book }) {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
-  const handleUpdate = (book) => {
-    console.log("Update this book: ", book);
+  const handleUpdate = async (book) => {
+    //console.log("Update this book: ", book);
+
+    navigate(`/editBook/${book._id}`, { state: book });
+    // await fetch(`http://localhost:5000/books/${user.email}/${book._id}`, {
+    //   method: "PUT",
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
   };
 
   const handleShowDetails = (book) => {

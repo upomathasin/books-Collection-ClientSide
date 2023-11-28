@@ -16,6 +16,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import BookDetails from "./Components/BookDetails/BookDetails";
+import EditBook from "./Components/EditBook/EditBook";
 
 const queryClient = new QueryClient();
 function App() {
@@ -37,6 +38,15 @@ function App() {
             </PrivateRoute>
           ),
         },
+        {
+          path: "/editBook/:id",
+          element: (
+            <PrivateRoute>
+              <EditBook></EditBook>
+            </PrivateRoute>
+          ),
+        },
+        ,
         {
           path: "/book/details/:id",
           element: <BookDetails></BookDetails>,
