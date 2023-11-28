@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthContextProvider";
-
+import { IoBookSharp } from "react-icons/io5";
 export default function Navbar() {
   const { user, signOutUser } = useContext(AuthContext);
   const handleSignOut = () => {
@@ -34,25 +34,33 @@ export default function Navbar() {
             <li>
               <Link to="/books">Books</Link>
             </li>
+
+            <li>
+              <Link to="/addBook">Add Book</Link>
+            </li>
+
             <li>
               <Link to="/register">Login</Link>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <li className="btn btn-ghost text-xl">
+          <div className="flex justify-center items-center text-center">
+            <IoBookSharp className="me-2" />
+            Books Collection
+          </div>
+        </li>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link to="/">Home</Link>
           </li>
-          {user && (
-            <div>
-              <li>
-                <Link to="/addBook">Add Book</Link>
-              </li>
-            </div>
-          )}
+
+          <li>
+            <Link to="/addBook">Add Book</Link>
+          </li>
+
           <li>
             <Link to="/register">Register</Link>
           </li>
