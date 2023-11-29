@@ -25,13 +25,16 @@ export default function EditBook() {
     };
     console.log(updatedBook);
 
-    await fetch(`http://localhost:5000/books/${user.email}/${book._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedBook),
-    })
+    await fetch(
+      `https://books-collection-server-side.vercel.app/books/${user.email}/${book._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedBook),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({

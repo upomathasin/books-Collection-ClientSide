@@ -4,13 +4,16 @@ import { AuthContext } from "../../Provider/AuthContextProvider";
 export default function SearchBooks() {
   const [books, setBooks] = useState([]);
 
-  const [searchedData, setSearchedData] = useState(books);
+  const [searchedData, setSearchedData] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/books/${user.email}`)
+    fetch(`https://books-collection-server-side.vercel.app/books/${user.email}`)
       .then((res) => res.json())
-      .then((data) => setBooks(data));
-  }, [books]);
+      .then((data) => {
+        setBooks(data);
+        setSearchedData(data);
+      });
+  }, []);
 
   console.log(books);
 

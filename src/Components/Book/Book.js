@@ -10,9 +10,12 @@ export default function Book({ book }) {
   const handleDelete = async (book) => {
     //console.log("delete this book: ", book);
 
-    await fetch(`http://localhost:5000/books/${user.email}/${book._id}`, {
-      method: "DELETE",
-    })
+    await fetch(
+      `https://books-collection-server-side.vercel.app/books/${user.email}/${book._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire("Book Deleted !");

@@ -18,13 +18,16 @@ export default function AddBooks() {
       genre: genre,
       details: details,
     };
-    await fetch(`http://localhost:5000/books/:${user.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newBook),
-    })
+    await fetch(
+      `https://books-collection-server-side.vercel.app/books/${user.email}`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newBook),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         Swal.fire({

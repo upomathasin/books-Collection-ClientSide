@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Book from "../Book/Book";
 import { AuthContext } from "../../Provider/AuthContextProvider";
-import useBooks from "../../useBooks/useBooks";
 
 export default function Books() {
   const [books, setBooks] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/books/${user.email}`)
+    fetch(`https://books-collection-server-side.vercel.app/books/${user.email}`)
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, [books]);
