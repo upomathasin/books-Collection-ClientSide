@@ -26,7 +26,9 @@ export default function AuthContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      getIdToken(user).then((idToken) => localStorage("idToken", idToken));
+      getIdToken(user).then((idToken) =>
+        localStorage.setItem("idToken", idToken)
+      );
       setUser(user);
       setLoading(false);
     });
