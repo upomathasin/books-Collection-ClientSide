@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  getIdToken,
 } from "firebase/auth";
 const auth = getAuth(app);
 
@@ -25,6 +26,7 @@ export default function AuthContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      getIdToken(user).then((idToken) => localStorage("idToken", idToken));
       setUser(user);
       setLoading(false);
     });
