@@ -22,16 +22,22 @@ const signOutUser = async () => {
 };
 export const AuthContext = createContext(null);
 export default function AuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      getIdToken(user).then((idToken) =>
-        localStorage.setItem("idToken", idToken)
-      );
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      if (user) {
+        getIdToken(user).then((idToken) =>
+          localStorage.setItem("idToken", idToken)
+        );
+      }
       setLoading(false);
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
   const val = {
     user: user,
