@@ -1,5 +1,4 @@
-# Objective: Develop a system to manage a collection of books with basic CRUD
-operations.
+# Objective: Develop a system to manage a collection of books with basic CRUD operations.
 
 # Requirements:
 * Backend (Node.js  Express):
@@ -13,7 +12,7 @@ Create a form to add new books with fields for title, author, etc. Display a lis
 books fetched from the backend API. Implement functionality to view details of a
 specific book, update book details, and delete a book.
 
-* Features
+* Features:
 Implement search/filter functionality by title, author, or genre. Add pagination for
 displaying books. Include user authentication for managing books per user.
 
